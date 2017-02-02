@@ -1,0 +1,99 @@
+             
+
+
+ "*" Indicates current G and M codes in Ver 1.71
+
+ 
+*G00 positioning (rapid traverse)
+*G01 linear interpolation (feed)
+*G02 circular interpolation CW 
+*G03 circular interpolation CCW 
+ G04 dwell 
+ G07 imaginary axis designation 
+ G09 exact stop check 
+ G10 offset value setting 
+*G12 Hole milling cycle CW
+*G13 Hole milling cycle CCW 
+*G17 XY plane selection 
+*G18 ZX plane selection 
+*G19 YZ plane selection 
+*G20 input in inch 
+*G21 input in mm 
+ G22 stored stroke limit ON 
+ G23 stored stroke limit OFF 
+ G27 reference point return check 
+*G28 return to reference point 
+ G29 return from reference point 
+ G30 return to 2nd 3rd & 4th ref. point 
+*G31 skip cutting 
+ G33 thread cutting 
+*G40 cutter compensation cancel 
+*G41 cutter compensation left 
+*G42 cutter compensation right 
+*G43 tool length compens'n + direction 
+*G44 tool length compens'n - direction 
+*G49 tool length compensation cancel 
+ G45 tool offset increase 
+ G46 tool offset decrease 
+ G47 tool offset double increase 
+ G48 tool offset double decrease 
+ G50 scaling OFF 
+ G51 scaling ON 
+ G52 local coordinate system setting  
+*G54 work conditions system 1 select 
+*G55 work coordinate system 2 select 
+*G56 work coordinate system 3 select 
+*G57 work coordinate system 4 select 
+*G58 work coordinate system 5 select 
+*G59 work coordinate system 6 select 
+ G60 single direction positioning 
+ G61 exact stop check mode 
+ G64 cutting mode 
+ G65 custom macro simple call 
+ G66 custom macro modal call 
+ G67 custom macro modal call cancel 
+ G68 coordinate system rotation ON 
+ G69 coordinate system rotation OFF 
+*G73 peck drilling cycle 
+*G74 counter tapping cycle 
+ G76 fine boring 
+*G80 canned cycle cancel 
+*G81 drilling cycle, spot boring 
+*G82 drilling cycle, counter boring (dwell)
+*G83 peck drilling cycle 
+*G84 tapping cycle 
+*G85 boring cycle 
+ G86 boring cycle 
+ G87 back boring cycle 
+ G88 boring cycle  
+*G89 boring cycle (dwell)
+*G90 absolute programming 
+*G91 incremental programming 
+*G92 programming of absolute zero pt 
+ G94 per minute feed 
+ G95 per revolution feed 
+ G96 constant surface speed control 
+ G97 constant surface speed control cancel 
+*G98 return to initial point in canned style 
+*G99 return to R point in canned cycle 
+
+ 
+
+ 
+  M Codes
+
+*M00 program stop  
+*M01 optional stop 
+*M02 end of program (no rewind) 
+*M03 spindle CW 
+*M04 Spindle CCW 
+*M05 spindle stop 
+ M06 tool change 
+ M07 mist coolant ON 
+*M08 flood coolant ON 
+*M09 coolant OFF 
+*M30 end program (rewind stop) 
+*M33 save current position to file
+*M50 syncronize move to external event
+*M98 call sub-program 
+*M99 end sub-program 
