@@ -108,6 +108,23 @@ The advanced features and professional interface enhance the experience for enth
 - FreeDOS Release 2.03 or later
 - Windows 95 or 98 running in MS-DOS mode
 
+#Related Links
+
+##Hardware
+- [GS2 Drives (AutomationDirect)](http://www.automationdirect.com/)
+- [Gecko Drives](http://www.geckodrive.com/)
+- [Xylotex](http://www.xylotex.com/) 
+- [Rutex](http://www.rutex.com/)
+- [Digi-Key](http://www.digikey.com/) (multi-position rotary switches & more)
+
+##Software
+- [Windows Networking for DOS (download)](ftp://ftp.microsoft.com/bussys/clients/MSCLIENT/dsk3-1.exe) & [Installation Help](http://www.wown.com/j_helmig/Dosclnt3.htm)
+- [FreeDOS](http://www.freedos.org/) (Free replacement for MS-DOS)
+
+##Hobbyist Community
+- [HobbyCNC](http://www.hobbycnc.com/)
+- [CNCzone](http://www.cnczone.com/)
+- [Inside-Woodworking](http://www.inside-woodworking.com/cnc/)
 
 ----
 
