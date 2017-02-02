@@ -1,0 +1,321 @@
+ZMILL v191.2
+
+Added "E" as an incremental move on the "A" axis so Zmill can operate as a 3D Printer using Reprap code using incremental "E"xtrude lengths.
+
+Added some new tool offset abilites so tool lengths can easily be set from other than zero positions.
+
+
+ZMILL v190.0
+
+Increased memory size for programs up to 256 megabytes, or about 7 million lines of program.
+
+Added cofirmation to save large programs back to disk that have been edited in memory. Saves time if not required.
+
+Changed E-stop (input pin) to only stop the machine and reset everything (same as esc key) but not shut down the servo drives.
+
+
+CNCZEUS v1.89.5
+Fixed a handle problem that could cause the handle to stop working on some motherboard chipsets.
+
+Fixed the problem with mirror that failed when plan changes were made with mirror on.
+
+Added LINEAR rapid! Linear rapid is required if you have an angle head and need to do 5 axis machining or drilling.
+
+ZLDEMO
+Also include the new beta lathe demo "ZLDEMO.EXE" in this package. Some known issues exist:
+1: G18 is required for circular moves in the ZX plane.
+2: Tools can be picked up with T0101 but will only work to T0909. G43 can be used for any tool number.
+3: Feed is still in inches per/minute and not inches per/rev. 
+4: The threading command G33 waites for the index mark correctly and can be used for threading, but the feed is    still in inches/minute.
+
+
+CNCZEUS v1.88a
+Fixed a problem with digitizing in subrotine called with line repeat.
+Added E-Stop port read to display an error number next to the flashing E-STOP indicator.
+Added a key in the TOOL and OFFSET setting screens to save changed data to file. Either screen saves all changed data from both tool and offset settings.
+
+
+CNCZEUS v1.88
+Fixed the point saving feature so position points can now be sent to a file using the M33 command or from JOG or HANDLE modes by pressing "P". The save file must first be enabled in the SETTINGS to save points.
+
+CNCZEUS v1.87e
+Fixed a bug that caused a hangup condition if a program was executed immediately after start up, without first using jog,home,mdi or anything that would initialize the feed rate control routine.
+
+Fixed another condition where if at the block read point in auto run, short interference pulses occur on the limit switch inputs, movement can stop but remain in cycle requiring another ENTER keystroke to continue or a long delay while the deceleration counter loops.(sometimes taking more than a minute or two)
+
+
+
+CNCZEUS v1.87d
+Added custom port address selection by pressing ENTER on the port setup address insted of using the over arrow keys.
+
+Added password access to setup by pressing ALT-P in the setup screen. The password itself can be changed in the settings area under the option SETUP PASSWORD. The default password is "zeus". If you change and forget the password you will need to delete the file "tool.cfg" and lose all your previous parameter settings.
+
+
+CNCZEUS v1.87c
+A bug that caused the PWM and watchdog timer signal to drop out was caused by slow real time clock chips that require more time to reset the interrupt correctly. An extra reset fixed the problem.
+
+
+CNCZEUS v1.87
+Several small problems were corrected in the display and the corner look ahead calculations.
+Fixed problem with M-codes not running in MDI mode while in canned cycle and the display while in MDI.
+Added a parameter to enhance the control of corner deceleration taking a value from 0 to about 4. Using 0 would force NO deceleration and 1 is the calculated default. A value of 4 or higher would provide near full deceleration on everything but tangent corners.
+Fixed a lockup problem on arcs.
+Fixed the jerky feed override controls.
+
+CNCZEUS v1.86
+Had several problems with reset not clearing all the next moves from the move buffer causing movement after reset!
+I now believe the problem is fixed but if you notice any case of this please leave feedback.
+
+Now enable axis limit switches seperately so CHECK YOUR SETTINGS!
+Fixed a problem that would hang the control if ESC was used while in feed hold.
+fixed a problem with the next move running from the buffer after RESET! AGAIN!
+Shortened further the delay time between moves for better operation at higher speeds.
+
+CNCZEUS v1.85
+Added auto corner deceleration and read ahead to decrease inter move latency. Now operates very well with the UHU servo controllers which can actually display the position error while in operation.(very informative)
+
+
+Also increased the ability to jump from single block mode to JOG or MDI then resume the program.(takes some understanding of G-code to do this efectively).
+
+CNCZEUS v1.84
+Added Pulse Width Modulation output as an option for spindle RPM control on pin 17 of lpt1. The pin can now be selected as either the COOL2 output or PWM spindle control.
+The 5Hz PWM output requires an additional parameter setting for motor RPM at full PWM and also that at least one gear change ratio be entered into the gear change table.
+The Ratio is calculated from spindle rotations / motor rotations. EXAMPLE: spindle 1 / motor 2 = ratio .5
+
+
+CNCZEUS v1.83
+Modified the emergency stop input to a total shutdown input. When the E-stop input is brought high at any time the control will decelerate all movement and shutdown all running options and then in 100ms stop the watchdog timer which should result in servo shutdown.
+
+All key and other input functions are also terminated until the input is again brought back to a low state. 
+DO NOT turn this option ON if you do not have the input connected or you may be forced to reboot or delete your config file or connect the input to a low state to regain control operation.
+
+CNCZEUS v1.82
+The backlash procedure that was being skipped after adding the independant axis scaling is now functioning again.
+
+CNCZEUS v1.81
+Added independant step values for each axis.
+
+Added a feed multiplier for the rotary axis to allow faster indexing on "G0" move commands while "G1,G2,G3" moves maintain commanded 
+relationship.
+
+Fixed a bug that allowed MDI to attempt to move off a limit switch. Only jog or handle mode should be used to move off a limit.
+
+
+CNCZEUS v1.80
+Fixed a bug on multi-quadrant arcs. A single step would result in the wrong direction as the arc pased through the quadrant.
+This would accumulate position loss until the next reset and could increase in size on very large programs using thousands of arcs.
+
+CNCZEUS v1.79
+Fixed the feed rate on the Z and A axes to maintain programmed feed when using different steps per inch  than the XY axes.
+
+Fixed a problem when switching between G20 and G21.
+
+Added an RPM readout on the setup page to calibrate the commanded RPM when the gear ratios are not known.
+An optical sensor on the A axis limit input is required for operation. The sensor should switch on and off once per revolution of the spindle and displays the actual RPM. It reads from about 8 to 7500 RPM.
+
+
+CNCZEUS v1.78.3
+Fixed the problem with canned cycles executing on program lines with no moves.
+G28 command will now operate only if machine has first been homed to a known position.
+
+CNCZEUS v1.78.2
+Fixed a problem between the cutter comps and circular directions (G2/G3) on the G18 and G19 planes. G02 is CW and G03 is CCW when the working plane is viewed from the positive to the negative direction of the perpendicular axis. 
+Fixed problem with the feed not incrementing with the keypad "+" key.
+
+Example1: When in normal G17 the XY plane is viewed from the positive end of the Z axis looking to the negative end.
+Example2: When in G19 the YZ plane is viewed from the positive end of the X axis looking to the negative end of the X axis.
+Example3: When in G18 the XZ plane is viewed from the positive end of the Y axis looking to the negative end of the Y axis.
+
+Also fixed a problem with interrupt wrap around that caused small position errors when running long program files.
+
+CNCZEUS v1.78
+Increased the line number "N" data value to a double to increase the maximum line number to about 1 billion.
+
+Fixed a bug causing the G20 or G21 commands to drop out or toggle.
+
+Added a tolerance to the "R" radius values to remove the errors caused if the radius was just short of reaching the end point.
+
+Fixed the line skip character "/" to skip the remainder or all of a line of G-code depending on where it is placed.
+
+
+CNCZEUS v1.77
+
+Changed the line repeate counter to show the subroutine number and the count value. If the current subroutines counter in not being used then the counter will display the previous subroutine number and count value.
+
+Added aceleration and deceleration to handle movement to help avoid servo error on drive boards with small error counts. Sending bursts of a few hundred counts can easily cause out of position errors.
+
+Addded the code "M50" to syncronize a movement with an external event. The event is triggered on the rising edge of the "A" axis limit switch input. Typical use would be "M50 G1 X-.75 F20" and would cause the move to wait for the external input.
+
+
+
+CNCZEUS v1.76
+
+Fixed the anoying flicker on the clock display.
+Changed the Loop counter display to display the previous counter if the current counter is not used.
+Raised the maximum feed rate to run faster with newer faster computers.
+Corrected some interrupt settings in the handle mode that could cause some computers to lock up or hang when switching out of handle mode or shortly after.
+Changed the schematics for the external feed controls and manual pulse generator (handle) connections to operate correctly on the newer PCI printer ports.
+
+
+CNCZEUS v1.75b
+Found setting a zero location using F4 then (axis) + ENTER did not work with axis mirror on.
+Small bug but real anoying when axis mirror is needed.
+
+CNCZEUS v1.75a
+Fixed a bug in the G83 peck drilling cycle while in metric (G21) mode.
+The Qxx peck depth was taken as inches insted of milimeters.
+
+CNCZEUS v1.75
+Fixed a back-lash error.
+Back-lash was not being aplied correctly in some cases on programs with moves of a single step in size. This would result in a loss of position if the back-lash parameter was set to anything other than zero and the program contained moves of a single step that reversed machine direction. The problem did not affected the JOG or HANDLE modes of operation but becaause of the position loss was considered important enough to justify an update. 
+
+
+CNCZEUS v1.74
+
+Fixed the pulse setup time on JOG and HANDLE modes of operation. These had little setup time for the direction logic before the step pulse. If you were experiencing location problems after jogging or using the handle then this will correct the problem.
+
+Fixed a problem that caused the standard (non expanded momory) release to lockup if the file was larger than the available remaining conventional memory.
+
+Removed the front panel light switch in favor of the secondary coolant2 output. Now coolant1 will operate with the standard M07 and coolant2 will operate with M08 and both turn off with M09.
+
+Added a 4096hz output signal on the second parallel port to serve as the software running signal. This can be used by an external circuit to allow servo power up only after the software is running.
+
+CNCZEUS v1.73
+Fixed a problem that caused ZEUS to abort operation with a divide by zero error after several thousand lines of program and which seemed to affect only computers faster than about 400mhz.
+
+Fixed the computer speed test so the maximum feed rate is correctly limited by the computers speed. Seems you can actually get about 62khz step rate from an Athlon 1900 computer.
+
+Added the rest of the metric conversions to the parameter settings so our metric friends can now operate totally in metric mode.
+
+CNCZEUS v1.72
+Fixed a small bug in cutter comps that would cause skipped intersections under some conditions.
+Normally the look ahead can skip intersections when a large cutter comp is used to avoid over cutting.
+
+CNCZEUS v1.71
+
+Fixed a bug in cutter offsets affecting intersections of lines to non-tangent arcs. (Surprised no one mentioned this)
+
+Added G12 and G13 allowing single command line hole milling. (This is a non-standard G-code but can be useful)
+Works like this:
+
+G12 I.5 F5. -- Moves X axis .5 then does a CW circle with a .5 radius then .5 back to circle center.
+
+G13 is CCW circle. A parameter of P2 added to the line causes the circle portion to repeat two times.
+
+G13 J.5 P2 F5. -- Moves Y-axis .5 does CCW circle two times and returns to center position.
+
+Can also add a Z move to the line and takes affect only during the circle portion of the command.
+
+G12 J.5 Z.2 F5. ---Moves Y-axis .5 does CW circle with Z move then returns to center.
+
+If the Z-axis movement is to be repeated with the "P" parameter then the move must be incremental (91).
+
+G91 G12 J.5 Z.04 P4 F5. --- Z-axis moves during the circle repeats .04 each revolution.
+
+Cutter compensation can be applied and is automatically cancelled on the return to center.
+
+G91 G41 D1 G12 J.5 Z.04 P4 F5. ---Moves Y .5 with cutter compensation and does four circles moving the Z .04 per revolution then cancels cutter comp and returns to center.
+
+Added a new position setting feature to automatically preset the center of two points
+
+The "/" key can be used during position setting to calculate the center of the new point and the previous set point.
+
+(1) Move the X-axis to the edge of work and set to zero. (Position screen then X then enter)
+(2) Move X to other edge of work then going to position screen, press (X  /  enter)
+	X-axis zero is now set to the midpoint of the work.
+
+-----------------------------------------------------------------------------------------------------
+
+
+CNCZEUS v1.70
+Fixed the parameter setting problem that was missed on the 1.69 update.
+
+
+CNCZEUS v1.69
+
+Totally reworked the acceleration / deceleration routines in preparation for auto vector feed override. This should hopefully be on the next update but decided to release this early because it is sooooo much smoother!.
+
+Also added software limits for those daring enough to operate without hardware limits. The limits operate from the machine position numbers and only become effective for the axes that are homed! A not homed indicator was also added to show which axes need to be homed.
+
+
+CNCZEUS v1.68
+
+Fixed a bug that allowed the jog lock to operate in rapid traverse.
+
+Added a mm/inch parameter to set the default units.(This may need to be set after initial installation)
+
+
+CNCZEUS v1.67
+
+Added some speed checking to test slower computers and limit the feed rate to the maximum possible for the computer.
+
+Added G20/G21 (English / Metric) to the retained variable list.
+This will keep the last setting when the program is re-started.
+
+
+CNCZEUS v1.66
+
+Fixed an issue that caused MDI to stop taking input until reset.
+This usually occurred after a circular (G2 G3) move involving another axis such as during helical interpolation.
+
+Fixed a problem that caused the rotary axis to stop short of the commanded position when commanded with a circular move.
+
+Added a circular buffer to MDI to allow repeating previously typed moves with the up/down arrow keys until reset.
+
+Added the "L" line repeats number to the tool info display window.
+ 
+-------------------------------------------------------------------------
+
+CNCZEUS v1.65
+
+New features added.
+
+(1)
+A new Rotary Axis parameter was added to allow the "A" axis to be defined as rotary.
+This allows axis rollover and is always in the range of 0 to 360 degrees.
+When a move like "G90 A45" is specified in absolute mode the shortest path is always taken and a move like "G90 A500" would be computed as 140 degrees and again the shortest path is taken.
+If a move is made in incremental mode like "G91 A62" then rotation of 62 degrees from the current position occurs. "G91 A600" would rotate 600 degrees and "G91 A-45" would rotate a -45 degrees.
+
+(2)
+G31 Skip cutting was added!
+This allows for a data probe to digitize objects saving the data to a file.
+"G31 Z-2 F20" would move the Z axis to -2 unless interrupted by the skip cutting signal stopping movement at the point the signal occurred.
+An "M33" anytime in the program will write the position to the data file if enabled.
+
+The interrupting signal is input to pin 10 or the "A" axis limit switch which is mainly unused in a the rotary application.
+I may allow other options on this later if for some reason using the limit is a conflict.
+ 
+New settings were added to allow data collection to be enabled or disabled and to set the file name data is saved in.
+When data collection is set to enabled, data points can also be entered manually while in JOG or HANDLE operation by pressing "P" on the keyboard for save Point.
+
+(3)
+The JOG setting has been enhanced!
+Pressing "F9" or JOG switches to jog mode, pressing again toggles between feed or rapid jog and is indicated on the display.
+Additionally pressing the "L" key can LOCK the jog in the feed mode.
+
+Pressing a jog direction key while in loc jog causes the axis to feed in the selected direction until pressed again or another direction is selected or the space bar or escape is pressed.
+
+-------------------------------------------------------------------------
+
+
+CNCZEUS v1.64
+
+Ok, finally a feature update.
+Added the lost G4 program delay.
+Use is G4 P1000 where Pxxxx is milliseconds, 1000 = 1 second
+
+Also fixed a problem with large steps per unit (steps > 10000) that did not divide evenly into 1 unit and caused a rounding error.
+
+-------------------------------------------------------------------------
+
+CNCZEUS v1.63
+
+Bug related to canned cycles setup in incremental mode that also affected multi axis drilling was fixed.
+-------------------------------------------------------------------------
+
+CNCZEUS v1.62
+
+Fixed the steps per inch parameter to allow 5-digit entry. 
+Fixed a bug affecting acceleration in G00.
+
+-------------------------------------------------------------------------
